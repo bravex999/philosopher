@@ -1,57 +1,89 @@
 #include "philo.h"
 
-static void  print_error_inputs(char str, int flag_over)
+static void	print_error_inputs(char str, int flag_over);
+static int	preprocess_head(char *str, int *i);
+static int	loop_atoi_strong(char *str, long *acum, int *i);
+
+int	ft_atoi_strong(char *str, long *out)
 {
-	
-	if(str == '-')
-		printf("%s", "Error: Arguments must be positive integers\n");
-	else if(!(str >= '0' && str <= '9'))
-		printf("%s", "Error: Arguments must be integers\n");
-	else if(flag_over == 1)
-		printf("%s", "Error: Value exceeds INT_MAX\n");
-}		
-		
-int ft_atoi_strong(char *str, long *out)
-{
-	int	i;
-	long acum;
-	
-	i =		0;
-	acum =	0;
-	while(str[i] == ' ')
-		i++;
-	if(str[i] == '-')
+	int		i;
+	long	acum;
+
+	i = 0;
+	acum = 0;
+	if (preprocess_head(str, &i))
 	{
-		print_error_inputs(str[i], 0);
 		return (1);
-	}	
-	while(str[i])
+	}
+	if (loop_atoi_strong(str, &acum, &i))
 	{
-		if(str[i] == '+' && (!(str[i + 1] >= '0' && str[i + 1] <= '9')))
-		{
-			print_error_inputs(str[i], 0);
-			return (1);
-		}			
-		if(str[i] == '+')
-			i++;
-		if(str[i] >= '0' && str[i] <= '9')
-		{
-			acum = acum * 10 + (str[i] - '0');
-			if(acum > (INT_MAX - (str[i] - '0') / 10))
-			{
-				print_error_inputs(str[i], 1);
-				return (1);
-			}	
-			i++;
-		}	
-		else if (!(str[i] >= '0' && str[i] <= '9'))
-		{
-			print_error_inputs(str[i], 0);			
-			return (1);
-		}
+		return (1);
 	}
 	*out = acum;
 	return (0);
+}
+
+static int	preprocess_head(char *str, int *i)
+{
+	while (str[*i] == ' ' || (str[*i] >= 9 && str[*i] <= 13))
+		(*i)++;
+	if (str[*i] == '-')
+	{
+		print_error_inputs(str[*i], 0);
+		return (1);
+	}
+	if (str[*i] == '+')
+	{
+		if (str[*i + 1] >= '0' && str[*i + 1] <= '9')
+			(*i)++;
+		else
+		{
+			print_error_inputs(str[*i], 0);
+			return (1);
+		}
+	}
+	if (!(str[*i] >= '0' && str[*i] <= '9'))
+	{
+		print_error_inputs(str[*i], 0);
+		return (1);
+	}
+	return (0);
+}
+
+static int	loop_atoi_strong(char *str, long *acum, int *i)
+{
+	int		digit;
+
+	while (str[*i])
+	{
+		if (str[*i] >= '0' && str[*i] <= '9')
+		{
+			digit = str[*i] - '0';
+			if (*acum > (INT_MAX - digit) / 10)
+			{
+				print_error_inputs(str[*i], 1);
+				return (1);
+			}
+			*acum = *acum * 10 + digit;
+			(*i)++;
+		}
+		else
+		{
+			print_error_inputs(str[*i], 0);
+			return (1);
+		}
+	}
+	return (0);
+}
+
+static void	print_error_inputs(char str, int flag_over)
+{
+	if (str == '-')
+		printf("%s", "Error: Arguments must be positive integers\n");
+	else if (!(str >= '0' && str <= '9'))
+		printf("%s", "Error: Arguments must be integers\n");
+	else if (flag_over == 1)
+		printf ("%s", "Error: Value exceeds INT_MAX\n");
 }
 
 int main (void)
@@ -59,7 +91,7 @@ int main (void)
 	char *str;
 	long result;
 
-	str = "99999999999999999999999999999";
+	str = "+";
 	if (ft_atoi_strong(str, &result) != 0)
 		return (1);
 	printf("%ld""%c", result, '\n');
