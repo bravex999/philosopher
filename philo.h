@@ -8,5 +8,5 @@
 # include <stdio.h>
 # include <sys/time.h>
 # include <pthread.h>
-
+# include <limits.h>
 #endif
