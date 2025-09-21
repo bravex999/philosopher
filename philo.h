@@ -7,6 +7,6 @@
 # include <string.h>
 # include <stdio.h>
 # include <sys/time.h>
-# include <pthread.h> ç
+# include <pthread.h>
 
 #endif
