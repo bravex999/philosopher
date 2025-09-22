@@ -10,6 +10,6 @@
 # include <pthread.h>
 # include <limits.h>
 
-/*int	ft_atoi_strong(char *str, long *out)*/
+int	ft_atoi_strong(char *str, long *out);
 
 #endif
