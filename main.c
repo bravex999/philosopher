@@ -18,7 +18,10 @@ int	main(int argc, char **argv)
 		if (ft_atoi_strong(argv[i], &out) != 0)
 			return (1);
 		if (out == 0)
+		{
+			write(2, "Error: number_of_philosophers must be >= 1\n", 43);
 			return (1);
+		}	
 		i++;
 	}
 	return (0);
