@@ -85,15 +85,3 @@ static void	print_error_inputs(char str, int flag_over)
 	else if (flag_over == 1)
 		printf ("%s", "Error: Value exceeds INT_MAX\n");
 }
-
-int main (void)
-{
-	char *str;
-	long result;
-
-	str = "+";
-	if (ft_atoi_strong(str, &result) != 0)
-		return (1);
-	printf("%ld""%c", result, '\n');
-	return 0;
-}

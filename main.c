@@ -10,7 +10,7 @@ int	main(int argc, char **argv)
 	i = 1;
 	if (argc != 5 && argc != 6)
 	{
-		print_number_args_error(void);
+		print_number_args_error();
 		return (1);
 	}
 	while (argv[i])
