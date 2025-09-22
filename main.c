@@ -4,7 +4,7 @@ int main (int argc, char **argv)
 {
 	(void)argv;
 
-	if(argc != 4 && argc != 5)
+	if(argc != 5 && argc != 6)
 	{
 		printf("%s","Usage: ./philo "
 		"number_of_philosophers time_to_die time_to_eat"
