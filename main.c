@@ -24,6 +24,8 @@ static int parameters_converter(char **argv, int i, long out)
 {
 	int t_index;
 	int temp[5];
+	t_shared shared;
+	t_config config;
 
 	t_index = 0;
 	memset(temp, 0, sizeof(temp));
@@ -39,6 +41,8 @@ static int parameters_converter(char **argv, int i, long out)
 		temp[t_index++] = out;
 		i++;
 	}
+	if (init_structs(&shared, &config, temp[5]) != 0)
+			return (1);
 	return (0);
 }
 
