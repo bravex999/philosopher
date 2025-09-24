@@ -1,6 +1,7 @@
 #ifndef PHILO_H
 # define PHILO_H
 
+# include "philo_types.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <unistd.h>
