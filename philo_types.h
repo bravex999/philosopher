@@ -3,7 +3,7 @@
 
 # include <pthread.h>
 
-typedef struct s_philos t_philos;
+typedef struct s_philos	t_philos;
 
 typedef long long		t_ms;
 
