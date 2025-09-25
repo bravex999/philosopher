@@ -17,6 +17,12 @@ int	main(int argc, char **argv)
 	}
 	if(parameters_converter(argv, i, out) == 1)
 		return (1);
+	if (init_time(&shared) != 0)
+	{
+		write(2, "Error: tiempo base falló\n", 25);
+		cleanup_shared(&shared);
+		return (1);
+	}
 	return (0);
 }
 
@@ -41,7 +47,7 @@ static int parameters_converter(char **argv, int i, long out)
 		temp[t_index++] = out;
 		i++;
 	}
-	if (init_structs(&shared, &config, temp[5]) != 0)
+	if (init_structs(&shared, &config, temp) != 0)
 			return (1);
 	return (0);
 }

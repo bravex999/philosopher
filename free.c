@@ -1,16 +1,35 @@
 #include "philo.h"
 
-void free_philos(t_shared *shared->philos)
+#include "philo.h"
+
+void	cleanup_shared(t_shared *shared)
 {
-	int i;
-	
-	i = 0;
-	while(shared->philos[i])
+	int	i;
+
+	// 🔹 Fase 2: destruir mutex de cada fork
+	/*
+	if (shared->forks)
 	{
-		free(shared->philos[i])
-		i++;
+		i = 0;
+		while (i < shared->cfg.n)
+		{
+			pthread_mutex_destroy(&shared->forks[i].mutex);
+			i++;
+		}
 	}
-}
+	*/
+	if (shared->philos)
+	{
+		free(shared->philos);
+		shared->philos = NULL;
+	}
+	if (shared->forks)
+	{
+		free(shared->forks);
+		shared->forks = NULL;
+	}
+}	
+
 
 
 
