@@ -3,7 +3,7 @@
 
 # include <pthread.h>
 
-typedef struct s_philo	t_philo;
+typedef struct s_philos t_philos;
 
 typedef long long		t_ms;
 
@@ -26,11 +26,11 @@ typedef enum e_log_kind
 	LOG_DIED
 }	t_log_kind;
 
-typedef struct s_fork
+typedef struct s_forks
 {
 	pthread_mutex_t	mtx;
 	int				id;
-}	t_fork;
+}	t_forks;
 
 typedef struct s_shared
 {
@@ -39,18 +39,18 @@ typedef struct s_shared
 	int				stop;
 	pthread_mutex_t	mutex_print;
 	pthread_mutex_t	mutex_state;
-	t_fork			*forks;
-	t_philo			*philos;
+	t_forks			*forks;
+	t_philos		*philos;
 }	t_shared;
 
-struct s_philo
+struct s_philos
 {
 	int				id;
 	int				meals;
 	t_ms			last_meal_ms;
 	pthread_t		thread;
-	t_fork			*first;
-	t_fork			*second;
+	t_forks			*first;
+	t_forks			*second;
 	t_shared		*shared;
 };
 
