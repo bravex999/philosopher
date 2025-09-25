@@ -7,6 +7,7 @@ int	init_structs(t_shared *shared, t_config *config, int *temp)
 	int i;
 	i = 0;
 
+	memset(config, 0, sizeof(t_config));
 	while (i <= 3)
 	{
 		if(temp[i] == 0)
@@ -19,6 +20,7 @@ int	init_structs(t_shared *shared, t_config *config, int *temp)
 	config->t_sleep_ms = temp[3];
 	if(temp[4] != 0)
 	{
+		config->has_goal = 1;
 		config->must_eat = temp[4];
 	}
 	if(init_philo_shared(shared, config) != 0)
@@ -40,6 +42,7 @@ static int init_philo_shared(t_shared *shared, t_config *config)
 		return (1);
 	}
 	memset(shared->forks, 0, sizeof(t_forks) * config->n);
+	shared->cfg = *config;
 	return (0);
 }	
 

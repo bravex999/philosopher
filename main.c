@@ -1,10 +1,11 @@
 #include "philo.h"
 
 static void	print_number_args_error(void);
-static int parameters_converter(char **argv, int i, long out);
+static int parameters_converter(char **argv, int i, long out, t_shared *shared);
 
 int	main(int argc, char **argv)
 {
+	t_shared shared;
 	int		i;
 	long	out;
 
@@ -15,7 +16,7 @@ int	main(int argc, char **argv)
 		print_number_args_error();
 		return (1);
 	}
-	if(parameters_converter(argv, i, out) == 1)
+	if(parameters_converter(argv, i, out, &shared) == 1)
 		return (1);
 	if (init_time(&shared) != 0)
 	{
@@ -26,11 +27,10 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-static int parameters_converter(char **argv, int i, long out)
+static int parameters_converter(char **argv, int i, long out, t_shared *shared)
 {
 	int t_index;
 	int temp[5];
-	t_shared shared;
 	t_config config;
 
 	t_index = 0;
@@ -47,7 +47,7 @@ static int parameters_converter(char **argv, int i, long out)
 		temp[t_index++] = out;
 		i++;
 	}
-	if (init_structs(&shared, &config, temp) != 0)
+	if (init_structs(shared, &config, temp) != 0)
 			return (1);
 	return (0);
 }

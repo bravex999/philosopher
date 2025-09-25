@@ -4,10 +4,8 @@
 
 void	cleanup_shared(t_shared *shared)
 {
-	int	i;
+	/*int	i;
 
-	// 🔹 Fase 2: destruir mutex de cada fork
-	/*
 	if (shared->forks)
 	{
 		i = 0;
