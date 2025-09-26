@@ -1,16 +1,6 @@
 #include "philo.h"
 
-static void	destroy_forks(t_shared *shared, int limit)
-{
-	int	j;
-
-	j = 0;
-	while (j < limit)
-	{
-		pthread_mutex_destroy(&shared->forks[j].mtx);
-		j++;
-	}
-}
+static void	destroy_forks(t_shared *shared, int limit);
 
 int	init_mutexes(t_shared *shared)
 {
@@ -37,4 +27,16 @@ int	init_mutexes(t_shared *shared)
 		i++;
 	}
 	return (0);
+}
+
+static void     destroy_forks(t_shared *shared, int limit)
+{
+        int     j;
+
+        j = 0;
+        while (j < limit)
+        {
+                pthread_mutex_destroy(&shared->forks[j].mtx);
+                j++;
+        }
 }
