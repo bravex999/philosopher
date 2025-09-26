@@ -1,6 +1,7 @@
 #include "philo.h"
 
 static void	print_number_args_error(void);
+static int aux_main(t_shared *shared);
 static int parameters_converter(char **argv, int i, long out, t_shared *shared);
 
 int	main(int argc, char **argv)
@@ -18,18 +19,28 @@ int	main(int argc, char **argv)
 	}
 	if(parameters_converter(argv, i, out, &shared) == 1)
 		return (1);
-	if(init_mutexes(t_shared *shared))
+	if (aux_main(&shared) == 1)
 		return (1);
-	
+	return (0);
+}
 
-
-	if (init_time(&shared) != 0)
+static int aux_main(t_shared *shared)
+{
+	if(init_mutexes(shared) == 1)
+	{
+		free(shared->philos);
+		shared->philos = NULL;
+		free(shared->forks);
+		shared->forks = NULL;
+		return (1);
+	}	
+	if (init_time(shared) != 0)
 	{
 		write(2, "Error: tiempo base falló\n", 25);
-		cleanup_shared(&shared);
+		cleanup_shared(shared);
 		return (1);
 	}
-	cleanup_shared(&shared);
+	cleanup_shared(shared);
 	return (0);
 }
 
