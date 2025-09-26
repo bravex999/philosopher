@@ -40,6 +40,11 @@ static int aux_main(t_shared *shared)
 		cleanup_shared(shared);
 		return (1);
 	}
+	if (setup_philos(shared) != 0)
+	{
+		cleanup_shared(shared);
+		return (1);
+	}
 	cleanup_shared(shared);
 	return (0);
 }
