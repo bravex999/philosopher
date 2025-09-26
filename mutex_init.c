@@ -29,14 +29,14 @@ int	init_mutexes(t_shared *shared)
 	return (0);
 }
 
-static void     destroy_forks(t_shared *shared, int limit)
+static void	destroy_forks(t_shared *shared, int limit)
 {
-        int     j;
+	int	j;
 
-        j = 0;
-        while (j < limit)
-        {
-                pthread_mutex_destroy(&shared->forks[j].mtx);
-                j++;
-        }
+	j = 0;
+	while (j < limit)
+	{
+		pthread_mutex_destroy(&shared->forks[j].mtx);
+		j++;
+	}
 }
