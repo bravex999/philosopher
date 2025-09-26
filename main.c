@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 		print_number_args_error();
 		return (1);
 	}
+	memset(&shared, 0, sizeof(t_shared));
 	if (parameters_conv(argv, i, out, &shared) == 1)
 		return (1);
 	if (aux_main(&shared) == 1)
