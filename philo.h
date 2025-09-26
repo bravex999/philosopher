@@ -17,6 +17,7 @@ int		init_time(t_shared *shared);
 t_ms	now_ms(t_shared *shared);
 int		init_structs(t_shared *shared, t_config *config, int *temp);
 int     init_mutexes(t_shared *shared);
+int     setup_philos(t_shared *shared);
 void	cleanup_shared(t_shared *shared);
 
 #endif
