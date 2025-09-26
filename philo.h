@@ -11,6 +11,10 @@
 # include <pthread.h>
 # include <limits.h>
 
-int	ft_atoi_strong(char *str, long *out);
+int		ft_atoi_strong(char *str, long *out);
+int		init_structs(t_shared *shared, t_config *config, int *temp);
+int		init_time(t_shared *shared);
+int		init_structs(t_shared *shared, t_config *config, int *temp);
+void	cleanup_shared(t_shared *shared);
 
 #endif

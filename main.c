@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 		cleanup_shared(&shared);
 		return (1);
 	}
+	cleanup_shared(&shared);
 	return (0);
 }
 
