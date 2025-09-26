@@ -18,6 +18,11 @@ int	main(int argc, char **argv)
 	}
 	if(parameters_converter(argv, i, out, &shared) == 1)
 		return (1);
+	if(init_mutexes(t_shared *shared))
+		return (1);
+	
+
+
 	if (init_time(&shared) != 0)
 	{
 		write(2, "Error: tiempo base falló\n", 25);
