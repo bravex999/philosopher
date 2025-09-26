@@ -85,3 +85,24 @@ static void	print_error_inputs(char str, int flag_over)
 	else if (flag_over == 1)
 		printf ("%s", "Error: Value exceeds INT_MAX\n");
 }
+
+void	super_sleep(t_ms ms, t_shared *shared)
+{
+	t_ms	start;
+	t_ms	now;
+	int		stop_now;
+
+	start = now_ms(shared);
+	while (1)
+	{
+		pthread_mutex_lock(&shared->mutex_state);
+		stop_now = shared->stop;
+		pthread_mutex_unlock(&shared->mutex_state);
+		if (stop_now)
+			break ;
+		now = now_ms(shared);
+		if (now - start >= ms)
+			break ;
+		usleep(200);
+	}
+}
