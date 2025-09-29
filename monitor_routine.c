@@ -56,13 +56,14 @@ static int	find_dead(t_shared *shared, int *who)
 	{
 		pthread_mutex_lock(&shared->mutex_state);
 		last = shared->philos[i].last_meal_ms;
-		pthread_mutex_unlock(&shared->mutex_state);
 		now = now_ms(shared);
 		if (now - last > shared->cfg.t_die_ms)
 		{
 			*who = i;
+			pthread_mutex_unlock(&shared->mutex_state);
 			return (1);
 		}
+		pthread_mutex_unlock(&shared->mutex_state);
 		i++;
 	}
 	return (0);
