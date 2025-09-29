@@ -23,10 +23,16 @@ int	print_event(t_shared *shared, t_log_kind kind, int id)
 	if (kind == LOG_DIED)
 		shared->stop = 1;
 	pthread_mutex_unlock(&shared->mutex_state);
-	if (stop_now && kind != LOG_DIED)
-		return (0);
 	ts = now_ms(shared);
 	pthread_mutex_lock(&shared->mutex_print);
+	pthread_mutex_lock(&shared->mutex_state);
+	stop_now = shared->stop;
+	pthread_mutex_unlock(&shared->mutex_state);
+	if (stop_now && kind != LOG_DIED)
+	{
+		pthread_mutex_unlock(&shared->mutex_print);
+		return (0);
+	}
 	printf("%lld %d %s\n", (long long)ts, id + 1, event_text(kind));
 	pthread_mutex_unlock(&shared->mutex_print);
 	return (0);
