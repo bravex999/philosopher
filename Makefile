@@ -1,6 +1,6 @@
 NAME        = philo
 CC          = cc
-CFLAGS      = -Wall -Werror -Wextra -g2 -O0 -fsanitize=address,undefined -pthread
+CFLAGS      = -Wall -Werror -Wextra -pthread
 INCLUDES    = -I includes
 
 SRCS = free.c main.c utils.c init_setup.c time.c init_philo.c monitor_routine.c mutex_init.c launch.c print_event.c routine.c
