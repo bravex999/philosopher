@@ -115,6 +115,6 @@ void	super_sleep(t_ms ms, t_shared *shared)
 		now = now_ms(shared);
 		if (now - start >= ms)
 			break ;
-		usleep(200);
+		usleep(100);
 	}
 }
