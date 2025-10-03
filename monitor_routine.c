@@ -35,7 +35,7 @@ void	*monitor_routine(void *arg)
 			set_stop(shared);
 			break ;
 		}
-		usleep(200);
+		usleep(100);
 	}
 	return (NULL);
 }
