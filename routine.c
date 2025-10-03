@@ -53,6 +53,7 @@ void	*philo_routine(void *arg)
 		pthread_mutex_unlock(&p->second->mtx);
 		print_event(p->shared, LOG_SLEEPING, p->id);
 		super_sleep(p->shared->cfg.t_sleep_ms, p->shared);
+		usleep(2000);
 	}
 	return (NULL);
 }
